@@ -2,9 +2,13 @@
 
 A landowner resource from **TIAER (Texas Institute for Applied Environmental Research), Tarleton State University**. It gives Paluxy River watershed landowners a science-based starting point for understanding **water quality** and the **long-term health of their watershed** in the context of proposed data-center development.
 
-This is a **non-advocacy** resource: it provides objective information and useful tools, points people to what's known and what they can do — it does **not** take a position.
+TIAER's role here is to be an **honest broker**: we're not on any one side — the stake we care about is the one we all share, a **healthy environment and a healthy economy**. This resource gives people objective information and the tools to weigh the tradeoffs and chart a path forward.
 
 > **Guiding question for scope:** water quality and the long-term health of the Paluxy — *not* acute-safety scares.
+
+## About TIAER
+
+TIAER was created by the Texas Legislature in 1991 to bring rigorous, applied science to real environmental challenges — beginning with water quality in the North Bosque River watershed. For more than 30 years we've helped communities, agencies, and industry find workable solutions that protect water and public health without ignoring economic realities. We're not on any one side — because the stake we care about is the one we all share: a **healthy environment and a healthy economy**. Our role is to give people the data, analysis, and tools they need to weigh the tradeoffs and chart a path forward for their watershed.
 
 ---
 
@@ -12,7 +16,7 @@ This is a **non-advocacy** resource: it provides objective information and usefu
 
 | File | What it is |
 |------|------------|
-| **`website.html`** | The **website**. Current content is the **V1 working draft** — water-quality-first, non-advocacy — with a *Build notes* toggle (top-right) that shows/hides per-section notes on what's needed and who owns it. The **original v0.3 draft is preserved in this file's git history** (open the file → History). |
+| **`website.html`** | The **website**. Current content is the **V1 working draft** — water-quality-first, objective — with a *Build notes* toggle (top-right) that shows/hides per-section notes on what's needed and who owns it. The **original v0.3 draft is preserved in this file's git history** (open the file → History). |
 | **`roadmap.html`** | **Product roadmap (v3)** — the plan version by version (V1 → V4), with checklists and a suggested division of labor. Interactive. |
 | **`v1-build-plan.html`** | The detailed **build plan for V1** — page blueprint, content/data to gather, sequenced next steps, and a definition of done. Interactive. |
 | **`CHANGELOG.md`** | A plain-language history of the roadmap and website versions. |
@@ -23,7 +27,7 @@ This is a **non-advocacy** resource: it provides objective information and usefu
 
 ## Guiding principles
 
-- **Non-advocacy.** Information and tools, never opinions. "Here's what we know; here are steps you can take."
+- **Objective & shared-purpose.** Not on any one side — a healthy environment and a healthy economy is a stake we all share.
 - **Water quality first.** TIAER's focus and the site's throughline — anchored in long-term watershed health.
 - **Actionable & digestible.** Surface the data that matters, then a clear path to action — no wall of metrics.
 - **Paluxy focus, built to scale.** Nail the Paluxy pilot first, with a structure that can grow.
