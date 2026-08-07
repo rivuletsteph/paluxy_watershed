@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V1 Build Plan · Data Centers & Your Water</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1C3A4A; --teal:#2B6B58; --limestone:#F7F3EC; --earth:#3A2A18;
+    --amber:#C07A2A; --amber-light:#FDF0DC; --sky:#6B9BAF; --water:#4A8A9A;
+    --white:#fff; --rule:#D4C9B8; --muted:#5A4D3E;
+    --steph:#2B6B58; --steph-bg:#E5F0EC; --kait:#C07A2A; --kait-bg:#FDF0DC; --both:#4A8A9A; --both-bg:#E8F0F2;
+    --have:#2B6B58; --improve:#C07A2A; --new:#4A8A9A; --data:#8A5A18;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',sans-serif;background:var(--limestone);color:var(--earth);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 1.25rem 4rem}
+
+  header{background:var(--navy);color:#fff;padding:2.6rem 1.25rem 2.2rem;position:relative;overflow:hidden}
+  .hi{max-width:960px;margin:0 auto;position:relative}
+  .topo{position:absolute;inset:0;opacity:.06;background-image:repeating-radial-gradient(ellipse 130% 60% at 80% 40%,transparent 0 9%,var(--sky) 9.4% 9.8%,transparent 10%)}
+  .eyebrow{font-size:.66rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);margin-bottom:.6rem}
+  header h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;line-height:1.14}
+  header h1 em{color:var(--sky);font-style:normal}
+  .sub{color:rgba(255,255,255,.75);font-weight:300;margin-top:.55rem;font-size:.95rem;max-width:640px}
+  .goalbar{margin-top:1.1rem;background:rgba(43,107,88,.35);border:1px solid rgba(43,107,88,.6);border-radius:10px;padding:.7rem 1rem;font-size:.9rem;color:#D8F3E4}
+  .goalbar b{color:#fff}
+  .chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}
+  .chip{font-size:.68rem;font-weight:600;background:rgba(255,255,255,.12);color:#cfe3ea;padding:.28rem .65rem;border-radius:20px}
+
+  .controls{position:sticky;top:0;z-index:60;background:var(--white);border-bottom:1px solid var(--rule);box-shadow:0 2px 8px rgba(0,0,0,.05)}
+  .controls-inner{max-width:960px;margin:0 auto;padding:.6rem 1.25rem;display:flex;align-items:center;gap:.9rem;flex-wrap:wrap}
+  .track{flex:1;min-width:130px;height:8px;background:var(--rule);border-radius:6px;overflow:hidden}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--water));border-radius:6px;transition:width .35s}
+  .pct{font-size:.76rem;font-weight:700;color:var(--navy);white-space:nowrap}
+  .legend{display:flex;gap:.5rem;flex-wrap:wrap;font-size:.66rem;color:var(--muted)}
+  .lg{display:inline-flex;align-items:center;gap:.3rem}
+  .sw{width:10px;height:10px;border-radius:3px;display:inline-block}
+  .reset{font-size:.72rem;color:var(--water);background:none;border:1px solid var(--rule);padding:.26rem .65rem;border-radius:6px;cursor:pointer}
+  .reset:hover{background:var(--limestone)}
+
+  section{margin-top:2.2rem}
+  .sec-label{font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--water);margin-bottom:.3rem}
+  h2.title{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--navy);margin-bottom:.3rem;line-height:1.15}
+  .intro{font-size:.9rem;color:var(--muted);margin-bottom:1rem;max-width:720px}
+
+  /* BLUEPRINT */
+  .blocks{display:grid;gap:0}
+  .blk{background:var(--white);border:1px solid #EFE9DD;border-radius:12px;padding:1rem 1.2rem;box-shadow:0 2px 12px rgba(28,58,74,.06);position:relative}
+  .blk-connector{width:2px;height:16px;background:var(--rule);margin:0 auto}
+  .blk-head{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+  .blk-n{width:26px;height:26px;border-radius:7px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.8rem;flex-shrink:0}
+  .blk-head h3{font-size:1rem;color:var(--navy);font-weight:700;flex:1;min-width:150px}
+  .status{font-size:.63rem;font-weight:700;letter-spacing:.03em;padding:.2rem .55rem;border-radius:20px;text-transform:uppercase}
+  .st-have{background:var(--steph-bg);color:var(--have)}
+  .st-improve{background:var(--amber-light);color:var(--improve)}
+  .st-new{background:var(--both-bg);color:var(--new)}
+  .st-data{background:#F3E6CE;color:var(--data)}
+  .owner{font-size:.63rem;font-weight:700;padding:.2rem .5rem;border-radius:20px}
+  .o-S{background:var(--steph-bg);color:var(--steph)}
+  .o-K{background:var(--kait-bg);color:var(--kait)}
+  .o-B{background:var(--both-bg);color:var(--both)}
+  .blk .purpose{font-size:.82rem;color:var(--muted);font-style:italic;margin:.5rem 0 .55rem}
+  .blk ul{list-style:none;display:grid;gap:.3rem}
+  .blk ul li{display:flex;gap:.5rem;font-size:.86rem;color:var(--earth)}
+  .blk ul li .d{color:var(--water);font-weight:800;flex-shrink:0}
+  .blk ul li b{color:var(--navy)}
+
+  /* CHECKLIST cards */
+  .card{background:var(--white);border:1px solid #EFE9DD;border-radius:12px;padding:1.1rem 1.3rem;box-shadow:0 2px 12px rgba(28,58,74,.06)}
+  ul.check{list-style:none}
+  ul.check li{display:flex;align-items:flex-start;gap:.7rem;padding:.5rem .4rem;border-radius:8px;cursor:pointer;transition:background .15s;font-size:.9rem}
+  ul.check li:hover{background:var(--limestone)}
+  .box{width:20px;height:20px;border-radius:5px;border:2px solid var(--water);flex-shrink:0;margin-top:1px;display:grid;place-items:center;transition:all .18s}
+  .box svg{width:12px;height:12px;opacity:0;transform:scale(.5);transition:all .18s}
+  li.done .box{background:var(--teal);border-color:var(--teal)}
+  li.done .box svg{opacity:1;transform:scale(1)}
+  li.done .txt{color:#9A8E7C;text-decoration:line-through}
+  .txt{flex:1}
+  .txt b{color:var(--navy);font-weight:600}
+  li.done .txt b{color:#9A8E7C}
+  .src{display:block;font-size:.74rem;color:var(--muted);font-style:italic;margin-top:.1rem}
+  .stepnum{width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.76rem;flex-shrink:0;margin-top:0}
+  li.done .stepnum{background:#B9AE9A}
+  .owner-sm{flex-shrink:0;font-size:.62rem;font-weight:700;padding:.16rem .45rem;border-radius:20px;margin-top:2px}
+
+  .gate{background:#fff;border:1.5px dashed var(--amber);border-radius:12px;padding:1rem 1.25rem;display:flex;gap:.8rem;align-items:flex-start}
+  .gate .ic{font-size:1.3rem}
+  .gate h3{font-size:.95rem;color:#8A5A18;margin-bottom:.2rem}
+  .gate p{font-size:.85rem;color:#6B4A12;line-height:1.55}
+
+  .dod{background:linear-gradient(100deg,var(--teal),var(--water));color:#fff;border-radius:12px;padding:1.2rem 1.4rem;box-shadow:0 3px 14px rgba(43,107,88,.25)}
+  .dod h3{font-size:1rem;margin-bottom:.6rem}
+  .dod ul{list-style:none;display:grid;gap:.4rem}
+  .dod li{display:flex;gap:.55rem;font-size:.88rem;align-items:flex-start}
+  .dod li .k{flex-shrink:0}
+
+  footer{text-align:center;margin-top:2.4rem;font-size:.76rem;color:#8A7A68;padding-top:1.1rem;border-top:1px solid var(--rule)}
+  @media print{.controls{position:static}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topo"></div>
+  <div class="hi">
+    <div class="eyebrow">TIAER · Paluxy Watershed · Roadmap → V1</div>
+    <h1>V1 Build Plan — <em>Foundation &amp; Focus</em></h1>
+    <div class="sub">Exactly what to build, what to include, and in what order — to turn the current v0.3 draft into the V1 vision draft you both believe should go out.</div>
+    <div class="goalbar"><b>V1 goal:</b> One clear, credible single-page site that answers a Paluxy landowner's first questions — <i>what's a watershed, how does this affect my water, what can I do</i> — led by water quality, in a non-advocacy voice.</div>
+    <div class="chips"><span class="chip">💧 Water quality first</span><span class="chip">⚖️ Non-advocacy</span><span class="chip">📍 Paluxy focus</span><span class="chip">✍️ Vision draft before outside eyes</span></div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="track"><div class="fill" id="fill"></div></div>
+    <div class="pct" id="pct">0 / 0</div>
+    <div class="legend">
+      <span class="lg"><span class="sw" style="background:var(--steph-bg);border:1px solid var(--have)"></span>Have</span>
+      <span class="lg"><span class="sw" style="background:var(--amber-light);border:1px solid var(--improve)"></span>Improve</span>
+      <span class="lg"><span class="sw" style="background:var(--both-bg);border:1px solid var(--new)"></span>New</span>
+      <span class="lg"><span class="sw" style="background:#F3E6CE;border:1px solid var(--data)"></span>Needs data</span>
+    </div>
+    <button class="reset" onclick="resetAll()">↺ Reset</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- PAGE BLUEPRINT -->
+  <section>
+    <div class="sec-label">Part 1 · The page, top to bottom</div>
+    <h2 class="title">V1 page blueprint</h2>
+    <p class="intro">The single-page structure in reading order. Each block shows its status against the current v0.3 draft and a suggested owner. This is the skeleton to lock in together first.</p>
+    <div class="blocks">
+
+      <div class="blk">
+        <div class="blk-head"><div class="blk-n">1</div><h3>Nav bar</h3><span class="status st-improve">Improve</span><span class="owner o-K">K</span></div>
+        <div class="purpose">Quick orientation; anchors that jump down the page.</div>
+        <ul>
+          <li><span class="d">›</span><div>Relabel to lead with the content: <b>Water Quality · The Watershed · What This Means · Take Action · Resources</b></div></li>
+        </ul>
+      </div>
+      <div class="blk-connector"></div>
+
+      <div class="blk">
+        <div class="blk-head"><div class="blk-n">2</div><h3>Hero</h3><span class="status st-improve">Improve</span><span class="owner o-B">◆</span></div>
+        <div class="purpose">First impression — set the topic, the place, and the non-advocacy tone.</div>
+        <ul>
+          <li><span class="d">›</span><div>Headline that leads with <b>water quality</b>: e.g. "Data centers &amp; your water — what Paluxy landowners should know about water quality."</div></li>
+          <li><span class="d">›</span><div>One-line non-advocacy framing: a science-based starting point, not a position.</div></li>
+          <li><span class="d">›</span><div>Keep the Segment 1229 status pill, but plain-language it (see block 5).</div></li>
+        </ul>
+      </div>
+      <div class="blk-connector"></div>
+
+      <div class="blk">
+        <div class="blk-head"><div class="blk-n">3</div><h3>"Start here" — plain-language explainer</h3><span class="status st-new">New</span><span class="owner o-B">◆</span></div>
+        <div class="purpose">The heart of V1 — answer the two questions everyone actually asks.</div>
+        <ul>
+          <li><span class="d">›</span><div><b>What's a watershed?</b> How water moves through the Paluxy landscape, in plain terms.</div></li>
+          <li><span class="d">›</span><div><b>How does this affect me?</b> Where a data center fits in, and why water quality &amp; long-term watershed health are the thing to watch.</div></li>
+          <li><span class="d">›</span><div>Short, friendly, jargon-free. Stephanie drafts the science voice; Kaitlyn builds the layout.</div></li>
+        </ul>
+      </div>
+      <div class="blk-connector"></div>
+
+      <div class="blk">
+        <div class="blk-head"><div class="blk-n">4</div><h3>The Paluxy watershed — map</h3><span class="status st-improve">Improve</span><span class="owner o-K">K</span></div>
+        <div class="purpose">Orient people to their place; show the key features.</div>
+        <ul>
+          <li><span class="d">›</span><div>Aerial/interactive map with a real <b>watershed boundary</b> + Trinity Aquifer area (replace approximate polygons).</div></li>
+          <li><span class="d">›</span><div>Markers: <b>Comanche Circle</b> (verified footprint), Dinosaur Valley, USGS gage, Glen Rose, Brazos confluence.</div></li>
+          <li><span class="d">›</span><div>Keep the simple legend; note "draft — pending final GIS" until verified.</div></li>
+        </ul>
+      </div>
+      <div class="blk-connector"></div>
+
+      <div class="blk">
+        <div class="blk-head"><div class="blk-n">5</div><h3>Water quality today</h3><span class="status st-data">Needs data</span><span class="owner o-B">◆</span></div>
+        <div class="purpose">The bread and butter — what the data actually says, in plain language.</div>
+        <ul>
+          <li><span class="d">›</span><div>Plain-language "what <b>Fully Supporting</b> means" for Segment 1229.</div></li>
+          <li><span class="d">›</span><div>A simple trend snapshot (E. coli, TN, TP, DO) + current USGS gage flow.</div></li>
+          <li><span class="d">›</span><div>Stephanie sources the data; Kaitlyn turns it into a clean chart/visual.</div></li>
+        </ul>
+      </div>
+      <div class="blk-connector"></div>
+
+      <div class="blk">
+        <div class="blk-head"><div class="blk-n">6</div><h3>What this means for your water</h3><span class="status st-improve">Improve</span><span class="owner o-B">◆</span></div>
+        <div class="purpose">Make the science visual — the concept diagram, reframed to long-term health.</div>
+        <ul>
+          <li><span class="d">›</span><div>Keep the rainfall → runoff → withdrawal → wells → aquifer diagram; caption it toward <b>long-term watershed health</b> (not acute safety).</div></li>
+          <li><span class="d">›</span><div>Tee up the V2 aquifer "side view" as "coming next" so the throughline is visible.</div></li>
+        </ul>
+      </div>
+      <div class="blk-connector"></div>
+
+      <div class="blk">
+        <div class="blk-head"><div class="blk-n">7</div><h3>Take action — 3-step path</h3><span class="status st-have">Have</span><span class="owner o-S">S</span></div>
+        <div class="purpose">Clear, practical next steps for a landowner.</div>
+        <ul>
+          <li><span class="d">›</span><div>Keep the 3 steps: <b>document baseline → track the permit → engage the process.</b></div></li>
+          <li><span class="d">›</span><div>Light polish; confirm the GCD testing detail (see gather list).</div></li>
+        </ul>
+      </div>
+      <div class="blk-connector"></div>
+
+      <div class="blk">
+        <div class="blk-head"><div class="blk-n">8</div><h3>Organizations &amp; who to contact</h3><span class="status st-improve">Improve</span><span class="owner o-S">S</span></div>
+        <div class="purpose">Connect people to action — the running directory starts here.</div>
+        <ul>
+          <li><span class="d">›</span><div>Keep TIAER, Upper Trinity GCD, Collier Consulting, Protect the Paluxy.</div></li>
+          <li><span class="d">›</span><div><b>Add Brazos Watershed Alliance</b>; add a local legal contact when found.</div></li>
+          <li><span class="d">›</span><div>Frame as "who to contact," not endorsements — non-advocacy.</div></li>
+        </ul>
+      </div>
+      <div class="blk-connector"></div>
+
+      <div class="blk">
+        <div class="blk-head"><div class="blk-n">9</div><h3>Footer</h3><span class="status st-have">Have</span><span class="owner o-K">K</span></div>
+        <div class="purpose">Credibility + honest status.</div>
+        <ul>
+          <li><span class="d">›</span><div>TIAER / Tarleton attribution, non-advocacy line, "draft — verify before distribution."</div></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GATHER LIST -->
+  <section>
+    <div class="sec-label">Part 2 · Before the page can be "done"</div>
+    <h2 class="title">Content &amp; data to gather</h2>
+    <p class="intro">The specific facts, datasets, and contacts to lock down. Tick as you confirm each.</p>
+    <div class="card">
+      <ul class="check" data-group>
+        <li><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Segment 1229 assessment + trends</b> (E. coli, TN, TP, DO)<span class="src">Source: TCEQ SWQMIS / Clean Rivers Program · owner S</span></span></li>
+        <li><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>USGS Gage 08091500 flow</b> — widget or static chart<span class="src">Source: waterdata.usgs.gov · owner K</span></span></li>
+        <li><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Upper Trinity GCD testing</b> — free/low-cost packages &amp; eligibility<span class="src">Confirm directly with the GCD · owner S</span></span></li>
+        <li><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Comanche Circle footprint</b> — verify location for the map<span class="src">owner K + S</span></span></li>
+        <li><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Watershed boundary + Trinity Aquifer GIS layers</b><span class="src">Source: TCEQ / NRCS / USGS WBD · owner K</span></span></li>
+        <li><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Brazos Watershed Alliance</b> — details &amp; link for the directory<span class="src">owner S</span></span></li>
+        <li><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Local legal contact</b> — Subchapter K / contested-case guidance<span class="src">owner S</span></span></li>
+        <li><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Recharge ↔ river-flow explainer</b> — plain-language basis for "Start here"<span class="src">Open science question · owner S</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- NEXT STEPS -->
+  <section>
+    <div class="sec-label">Part 3 · The order of operations</div>
+    <h2 class="title">Next steps</h2>
+    <p class="intro">A sequence you can work top to bottom. Planning &amp; content can start now; hold the heavy build until the Tarleton green light (see below).</p>
+    <div class="card">
+      <ul class="check" data-group>
+        <li><span class="stepnum">1</span><span class="txt"><b>Lock this V1 blueprint together</b> — agree the sections &amp; order</span><span class="owner-sm o-B">◆</span></li>
+        <li><span class="stepnum">2</span><span class="txt"><b>Draft the "Start here" copy</b> — watershed + "how this affects me," water-quality lead, non-advocacy voice</span><span class="owner-sm o-S">S</span></li>
+        <li><span class="stepnum">3</span><span class="txt"><b>Gather Segment 1229 + USGS data</b>; hand off to Kaitlyn for the water-quality visual</span><span class="owner-sm o-S">S</span></li>
+        <li><span class="stepnum">4</span><span class="txt"><b>Refresh the Paluxy map</b> — real boundary/aerial + verified Comanche Circle</span><span class="owner-sm o-K">K</span></li>
+        <li><span class="stepnum">5</span><span class="txt"><b>Reword hero + nav</b> to lead with water quality</span><span class="owner-sm o-B">◆</span></li>
+        <li><span class="stepnum">6</span><span class="txt"><b>Expand the directory</b> — add Brazos Watershed Alliance; verify every contact</span><span class="owner-sm o-S">S</span></li>
+        <li><span class="stepnum">7</span><span class="txt"><b>Assemble the single-page draft</b> from the blocks above</span><span class="owner-sm o-B">◆</span></li>
+        <li><span class="stepnum">8</span><span class="txt"><b>Internal review pass</b> — non-advocacy tone + accuracy of every claim</span><span class="owner-sm o-B">◆</span></li>
+      </ul>
+    </div>
+    <div style="margin-top:1rem">
+      <div class="gate">
+        <div class="ic">🚦</div>
+        <div><h3>Then the review gate</h3><p>Once you both like the draft, get other eyes on it and confirm hosting with Tarleton (separate entity linked from TIAER). Hold Kaitlyn's significant build hours until the Tarleton thumbs-up — outlining and Stephanie's content can move now.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEFINITION OF DONE -->
+  <section>
+    <div class="sec-label">Part 4 · How we know V1 is ready</div>
+    <h2 class="title">Definition of done</h2>
+    <div class="dod">
+      <h3>V1 is ready for outside eyes when…</h3>
+      <ul>
+        <li><span class="k">✓</span> Every section has real, verified content — no placeholders left.</li>
+        <li><span class="k">✓</span> Water quality leads, and the non-advocacy voice holds throughout.</li>
+        <li><span class="k">✓</span> It reads cleanly top-to-bottom, answering: what's a watershed → how it affects me → what I can do.</li>
+        <li><span class="k">✓</span> Every contact and data point is checked and current.</li>
+        <li><span class="k">✓</span> It's a draft you <i>both</i> feel good about — the version you'd want to send out.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    V1 Build Plan · Data Centers &amp; Your Water · TIAER, Tarleton State University · Non-advocacy · Water quality first
+  </footer>
+
+</div>
+
+<script>
+  const boxes = Array.from(document.querySelectorAll('ul.check li'));
+  const fill = document.getElementById('fill');
+  const pct = document.getElementById('pct');
+  function update(){
+    const done = boxes.filter(b=>b.classList.contains('done')).length;
+    fill.style.width = boxes.length ? (done/boxes.length*100)+'%' : '0%';
+    pct.textContent = done+' / '+boxes.length;
+  }
+  boxes.forEach(li=>li.addEventListener('click',()=>{li.classList.toggle('done');update();}));
+  function resetAll(){boxes.forEach(b=>b.classList.remove('done'));update();}
+  update();
+</script>
+</body>
+</html>

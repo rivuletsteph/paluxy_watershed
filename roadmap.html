@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap v3 · Data Centers & Your Water</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1C3A4A; --teal:#2B6B58; --limestone:#F7F3EC; --earth:#3A2A18;
+    --amber:#C07A2A; --amber-light:#FDF0DC; --sky:#6B9BAF; --water:#4A8A9A;
+    --white:#fff; --rule:#D4C9B8; --muted:#5A4D3E;
+    --steph:#2B6B58; --steph-bg:#E5F0EC; --kait:#C07A2A; --kait-bg:#FDF0DC; --both:#4A8A9A; --both-bg:#E8F0F2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',sans-serif;background:var(--limestone);color:var(--earth);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:0 1.25rem 4rem}
+  header{background:var(--navy);color:#fff;padding:2.6rem 1.25rem 2.2rem;position:relative;overflow:hidden}
+  .hi{max-width:980px;margin:0 auto;position:relative}
+  .topo{position:absolute;inset:0;opacity:.06;background-image:repeating-radial-gradient(ellipse 130% 60% at 80% 40%,transparent 0 9%,var(--sky) 9.4% 9.8%,transparent 10%)}
+  .eyebrow{font-size:.66rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);margin-bottom:.6rem}
+  header h1{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.5rem);font-weight:900;line-height:1.14}
+  header h1 em{color:var(--sky);font-style:normal}
+  .sub{color:rgba(255,255,255,.75);font-weight:300;margin-top:.55rem;font-size:.95rem;max-width:670px}
+  .tagline{margin-top:1rem;font-family:'Playfair Display',serif;font-style:italic;font-size:1.02rem;color:#A8E6C8}
+  .controls{position:sticky;top:0;z-index:60;background:var(--white);border-bottom:1px solid var(--rule);box-shadow:0 2px 8px rgba(0,0,0,.05)}
+  .controls-inner{max-width:980px;margin:0 auto;padding:.65rem 1.25rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+  .track{flex:1;min-width:140px;height:8px;background:var(--rule);border-radius:6px;overflow:hidden}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--water));border-radius:6px;transition:width .35s}
+  .pct{font-size:.78rem;font-weight:700;color:var(--navy);white-space:nowrap}
+  .filters{display:flex;gap:.35rem}
+  .filt{font-size:.72rem;font-weight:600;padding:.3rem .7rem;border-radius:20px;border:1px solid var(--rule);background:#fff;color:var(--muted);cursor:pointer;transition:all .15s}
+  .filt:hover{border-color:var(--water)}
+  .filt.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  section{margin-top:2.2rem}
+  .sec-label{font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--water);margin-bottom:.3rem}
+  h2.title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--navy);margin-bottom:1rem;line-height:1.15}
+  .principles{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}
+  @media(max-width:720px){.principles{grid-template-columns:1fr 1fr}}
+  .pr{background:#fff;border:1px solid #EFE9DD;border-radius:11px;padding:.9rem 1rem;box-shadow:0 2px 12px rgba(28,58,74,.06)}
+  .pr .ic{font-size:1.3rem}
+  .pr h3{font-size:.9rem;color:var(--navy);margin:.35rem 0 .2rem}
+  .pr p{font-size:.78rem;color:var(--muted);line-height:1.45}
+  .split{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.9rem}
+  @media(max-width:720px){.split{grid-template-columns:1fr}}
+  .who{border-radius:12px;padding:1.1rem 1.2rem;border:1px solid #EFE9DD;background:#fff}
+  .who .av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;font-size:.95rem;margin-bottom:.5rem}
+  .who h3{font-size:1rem;color:var(--navy);margin-bottom:.35rem}
+  .who p{font-size:.82rem;color:var(--muted);line-height:1.5}
+  .ver{background:var(--white);border-radius:14px;margin-top:1.1rem;overflow:hidden;border:1px solid #EFE9DD;box-shadow:0 3px 16px rgba(28,58,74,.07)}
+  .ver-top{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.4rem;color:#fff}
+  .ver-tag{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;background:rgba(255,255,255,.16);border-radius:9px;padding:.25rem .8rem;flex-shrink:0}
+  .ver-top h3{font-size:1.12rem;font-weight:700}
+  .ver-top .theme{font-size:.8rem;opacity:.85;font-weight:400;margin-top:.05rem}
+  .ver-when{margin-left:auto;display:flex;align-items:center;gap:.6rem}
+  .vcount{font-size:.72rem;font-weight:700;background:rgba(255,255,255,.2);padding:.25rem .6rem;border-radius:20px}
+  .stage{font-size:.72rem;font-weight:600;background:rgba(255,255,255,.18);padding:.3rem .7rem;border-radius:20px;white-space:nowrap}
+  .ver-goal{padding:.85rem 1.4rem;background:var(--limestone);font-size:.87rem;color:var(--muted);border-bottom:1px solid var(--rule)}
+  .ver-goal b{color:var(--navy)}
+  .ver-body{padding:.6rem 1rem .9rem}
+  ul.check{list-style:none}
+  ul.check li{display:flex;align-items:flex-start;gap:.7rem;padding:.55rem .55rem;border-radius:8px;cursor:pointer;transition:background .15s;font-size:.92rem;color:var(--earth)}
+  ul.check li:hover{background:var(--limestone)}
+  .box{width:20px;height:20px;border-radius:5px;border:2px solid var(--water);flex-shrink:0;margin-top:1px;display:grid;place-items:center;transition:all .18s}
+  .box svg{width:12px;height:12px;opacity:0;transform:scale(.5);transition:all .18s}
+  li.done .box{background:var(--teal);border-color:var(--teal)}
+  li.done .box svg{opacity:1;transform:scale(1)}
+  li.done .txt{color:#9A8E7C;text-decoration:line-through}
+  .txt{flex:1}
+  .txt b{font-weight:600;color:var(--navy)}
+  li.done .txt b{color:#9A8E7C}
+  .owner{flex-shrink:0;font-size:.64rem;font-weight:700;letter-spacing:.04em;padding:.18rem .5rem;border-radius:20px;margin-top:1px;white-space:nowrap}
+  .o-S{background:var(--steph-bg);color:var(--steph)} .o-K{background:var(--kait-bg);color:var(--kait)} .o-B{background:var(--both-bg);color:var(--both)}
+  .star .txt::after{content:' ★';color:var(--amber)}
+  li.dim{opacity:.28}
+  .layers{margin:.3rem .55rem .6rem 2.5rem;background:var(--limestone);border:1px solid var(--rule);border-radius:9px;padding:.75rem .9rem}
+  .layers h4{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--water);margin-bottom:.4rem}
+  .layers ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.25rem .8rem}
+  @media(max-width:640px){.layers ul{grid-template-columns:1fr}}
+  .layers li{font-size:.8rem;color:var(--muted);display:flex;gap:.4rem}
+  .layers li::before{content:'▸';color:var(--water)}
+  .layers .later{margin-top:.5rem;font-size:.75rem;color:#8A7A68;font-style:italic}
+  .stand{background:#fff;border:1px solid #EFE9DD;border-radius:12px;padding:1.2rem 1.4rem}
+  .stand ul{list-style:none;display:grid;gap:.55rem}
+  .stand li{display:flex;gap:.6rem;align-items:flex-start;font-size:.9rem;color:var(--earth)}
+  .stand li .n{color:var(--water);font-weight:800;flex-shrink:0}
+  .stand li b{color:var(--navy)}
+  .open{display:grid;gap:.6rem}
+  .oq{display:flex;gap:.7rem;align-items:flex-start;background:var(--white);border:1px dashed var(--sky);border-radius:9px;padding:.75rem 1rem;font-size:.88rem;color:var(--earth)}
+  .oq .q{color:var(--sky);font-weight:800;flex-shrink:0}
+  .oq b{color:var(--navy)}
+  .reset{font-size:.72rem;color:var(--water);background:none;border:1px solid var(--rule);padding:.28rem .7rem;border-radius:6px;cursor:pointer}
+  .reset:hover{background:var(--limestone)}
+  footer{text-align:center;margin-top:2.4rem;font-size:.76rem;color:#8A7A68;padding-top:1.1rem;border-top:1px solid var(--rule)}
+  @media print{.controls{position:static}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topo"></div>
+  <div class="hi">
+    <div class="eyebrow">TIAER · Tarleton State · Paluxy Watershed</div>
+    <h1>Data Centers <em>&</em> Your Water — Roadmap v3</h1>
+    <div class="sub">A non-advocacy, water-quality data hub for landowners with questions about data centers and their watershed — built version by version, map first, focused on the Paluxy.</div>
+    <div class="tagline">Give people the data they need — and a clear path to action.</div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="track"><div class="fill" id="fill"></div></div>
+    <div class="pct" id="pct">0 / 0</div>
+    <div class="filters">
+      <button class="filt active" data-f="all">All</button>
+      <button class="filt" data-f="S">Stephanie</button>
+      <button class="filt" data-f="K">Kaitlyn</button>
+      <button class="filt" data-f="B">Shared</button>
+    </div>
+    <button class="reset" onclick="resetAll()">↺ Reset</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- PRINCIPLES -->
+  <section>
+    <div class="sec-label">What guides every version</div>
+    <h2 class="title">Four principles</h2>
+    <div class="principles">
+      <div class="pr"><div class="ic">💧</div><h3>Water quality first</h3><p>TIAER's bread and butter, anchored in the long-term health of the watershed.</p></div>
+      <div class="pr"><div class="ic">⚖️</div><h3>Non-advocacy</h3><p>Objective info and tools — never opinions. Even what we link to is chosen carefully.</p></div>
+      <div class="pr"><div class="ic">🎯</div><h3>Actionable</h3><p>Help people flow toward "what can I actually do" — test my water, share my data, speak up.</p></div>
+      <div class="pr"><div class="ic">🍃</div><h3>Digestible</h3><p>Show only what people need to draw conclusions — the "Oura ring" model, not a wall of metrics.</p></div>
+    </div>
+  </section>
+
+  <!-- OBJECTIVES -->
+  <section>
+    <div class="sec-label">What we're building toward</div>
+    <h2 class="title">Objectives</h2>
+    <div class="stand">
+      <ul>
+        <li><span class="n">1</span><div><b>Be the trusted data hub</b> for data-center &amp; water questions in the Paluxy — objective, science-based, non-advocacy.</div></li>
+        <li><span class="n">2</span><div><b>Help landowners understand their situation</b> — water quality, the Trinity Aquifer, wells, and river flow, in plain language.</div></li>
+        <li><span class="n">3</span><div><b>Make the science visual</b> — an interactive Paluxy map, and later a cross-section and a runoff model.</div></li>
+        <li><span class="n">4</span><div><b>Connect people to action</b> — surface the data that matters, then a clear path: test, share, engage.</div></li>
+        <li><span class="n">5</span><div><b>Start local, design to scale</b> — get the Paluxy really right first, then use it as a template.</div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DIVISION OF LABOR -->
+  <section>
+    <div class="sec-label">Suggested split — adjust together</div>
+    <h2 class="title">Who does what</h2>
+    <div class="split">
+      <div class="who">
+        <div class="av" style="background:var(--steph)">S</div>
+        <h3>Stephanie · TIAER lead</h3>
+        <p>Water-quality science &amp; data sourcing (TCEQ, USGS, TWDB) · permitting · modeling (via colleague Shubo) · partner relationships &amp; data-sharing · Tarleton approval &amp; hosting · non-advocacy guardrails.</p>
+      </div>
+      <div class="who">
+        <div class="av" style="background:var(--kait)">K</div>
+        <h3>Kaitlyn · GIS &amp; front-end</h3>
+        <p>The Paluxy HTML map &amp; GIS layers · raw-HTML build &amp; page structure · aquifer cross-section · infographics · citizen-science framing · Thriving Earth Exchange admin.</p>
+      </div>
+      <div class="who">
+        <div class="av" style="background:var(--both)">◆</div>
+        <h3>Shared</h3>
+        <p>Content architecture · the map, cross-section &amp; runoff visual (your science + her build) · review cadence · the decision to publish each version.</p>
+      </div>
+    </div>
+    <p style="font-size:.8rem;color:var(--muted);margin-top:.7rem;font-style:italic">Badges below: <b style="color:var(--steph)">S</b> Stephanie, <b style="color:var(--kait)">K</b> Kaitlyn, <b style="color:var(--both)">◆</b> shared. Filter up top to see one lane.</p>
+  </section>
+
+  <!-- ROADMAP -->
+  <section>
+    <div class="sec-label">The plan</div>
+    <h2 class="title">Roadmap, version by version</h2>
+
+    <!-- V1 -->
+    <div class="ver">
+      <div class="ver-top" style="background:var(--navy)">
+        <div class="ver-tag">V1</div>
+        <div><h3>Foundation &amp; the Map</h3><div class="theme">Get the Paluxy on the screen</div></div>
+        <div class="ver-when"><span class="vcount" data-count></span><span class="stage">Now</span></div>
+      </div>
+      <div class="ver-goal"><b>Goal:</b> A credible single-page site built around an interactive Paluxy map, that shares the water-quality data almost no one knows exists — and points to action.</div>
+      <div class="ver-body"><ul class="check" data-group>
+        <li data-owner="K"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Build the first-draft Paluxy watershed HTML map</b> (send in ~2 weeks) — layers below</span><span class="owner o-K">K</span></li>
+      </ul>
+      <div class="layers">
+        <h4>V1 map layers</h4>
+        <ul>
+          <li>Watershed boundary — Paluxy only (USGS WBD; gray-out outside)</li>
+          <li>River + tributaries (latest NHD)</li>
+          <li>Data center footprints (GeoJSON via Alex Ford / Texas Tribune, credited)</li>
+          <li>TCEQ SWQMIS monitoring stations (data linked on click)</li>
+          <li>Wastewater outfalls</li>
+          <li>Wells (TWDB Groundwater Database Viewer)</li>
+          <li>Springs (from NHD if findable)</li>
+          <li>High-res aerial basemap (impervious cover shows)</li>
+        </ul>
+        <div class="later">Later / draft 2: land-use &amp; impervious-cover rasters, more water-quality datasets.</div>
+      </div>
+      <ul class="check" data-group>
+        <li data-owner="S"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Share the water-quality data story</b> — TCEQ's routine monitoring + long historical record on this segment</span><span class="owner o-S">S</span></li>
+        <li data-owner="B"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Add groundwater quality data</b> — wells &amp; the TWDB Groundwater Database Viewer</span><span class="owner o-B">◆</span></li>
+        <li data-owner="B"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Landing page</b> — "What's a watershed? How does this affect me?" led by water quality, non-advocacy voice</span><span class="owner o-B">◆</span></li>
+        <li data-owner="S"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Action pathways</b> — the 3-step path (document baseline → track permit → engage), surfaced clearly</span><span class="owner o-S">S</span></li>
+        <li data-owner="S"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Starter organizations list</b> — Protect the Paluxy, Brazos Watershed Alliance, Public Citizen, GEAA, Texas Data Center Rebellion</span><span class="owner o-S">S</span></li>
+        <li data-owner="S"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Verify all data &amp; contacts</b>; keep source metadata for every layer</span><span class="owner o-S">S</span></li>
+      </ul></div>
+    </div>
+
+    <!-- V2 -->
+    <div class="ver">
+      <div class="ver-top" style="background:var(--teal)">
+        <div class="ver-tag">V2</div>
+        <div><h3>Understand the Science</h3><div class="theme">Make the invisible visible</div></div>
+        <div class="ver-when"><span class="vcount" data-count></span><span class="stage">Next</span></div>
+      </div>
+      <div class="ver-goal"><b>Goal:</b> Turn the harder water science into clear visuals — and model what added development could do.</div>
+      <div class="ver-body"><ul class="check" data-group>
+        <li data-owner="B" class="star"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Aquifer cross-section "side view"</b> — basic version first (ArcGIS/3D), then improve; likely a separate view</span><span class="owner o-B">◆</span></li>
+        <li data-owner="S"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Trinity ↔ Paluxy explainer</b> — how the aquifer relates to river flow</span><span class="owner o-S">S</span></li>
+        <li data-owner="S"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Surface-water context</b> — where the water is flowing now</span><span class="owner o-S">S</span></li>
+        <li data-owner="B" class="star"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>SWAT-inspired runoff visual</b> — HAWQS / Model My Watershed: "now vs. with data centers" for stream flow, surface runoff, subsurface flow (lean on Shubo)</span><span class="owner o-B">◆</span></li>
+        <li data-owner="K"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Impervious-cover / land-use layer</b> — added to the map</span><span class="owner o-K">K</span></li>
+      </ul></div>
+    </div>
+
+    <!-- V3 -->
+    <div class="ver">
+      <div class="ver-top" style="background:var(--water)">
+        <div class="ver-tag">V3</div>
+        <div><h3>Community &amp; Action</h3><div class="theme">From data to doing</div></div>
+        <div class="ver-when"><span class="vcount" data-count></span><span class="stage">Then</span></div>
+      </div>
+      <div class="ver-goal"><b>Goal:</b> Help people act on what they've learned, and bring in community + resources.</div>
+      <div class="ver-body"><ul class="check" data-group>
+        <li data-owner="B"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Sharpen the "what you can do" pathways</b> — the digestible, decision-useful layer</span><span class="owner o-B">◆</span></li>
+        <li data-owner="K"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Citizen science</b> — take-a-sample guidance + share data to Texas Stream Team</span><span class="owner o-K">K</span></li>
+        <li data-owner="K"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Thriving Earth Exchange</b> — apply (scientist side) to enter the Paluxy project → micro-grants (deadline ~Aug 20)</span><span class="owner o-K">K</span></li>
+        <li data-owner="S"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Pursue funding/grants</b> for TIAER — cash flow buys more time to focus here</span><span class="owner o-S">S</span></li>
+        <li data-owner="S"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Community lead</b> — revisit a Protect the Paluxy lead when the timing's right</span><span class="owner o-S">S</span></li>
+      </ul></div>
+    </div>
+
+    <!-- V4 -->
+    <div class="ver">
+      <div class="ver-top" style="background:var(--earth)">
+        <div class="ver-tag">V4</div>
+        <div><h3>Multi-Page Hub &amp; Other Watersheds</h3><div class="theme">Only once the Paluxy is great</div></div>
+        <div class="ver-when"><span class="vcount" data-count></span><span class="stage">Later</span></div>
+      </div>
+      <div class="ver-goal"><b>Goal:</b> Expand into a multi-page hub and template the approach for other watersheds.</div>
+      <div class="ver-body"><ul class="check" data-group>
+        <li data-owner="B"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Multi-page structure</b> — split into readable pages once the Paluxy site is really strong</span><span class="owner o-B">◆</span></li>
+        <li data-owner="B"><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6l3.5 3.5L11 2" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt"><b>Other watersheds as focus areas</b> — reuse the Paluxy as a hill-country template</span><span class="owner o-B">◆</span></li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- WHERE THINGS STAND -->
+  <section>
+    <div class="sec-label">From the Aug 7 work session</div>
+    <h2 class="title">Where things stand &amp; next steps</h2>
+    <div class="stand">
+      <ul>
+        <li><span class="n">›</span><div><b>Green to proceed</b> on all public info; the Teams project site waits on the volunteer application (Stephanie following up — high priority).</div></li>
+        <li><span class="n">›</span><div><b>Kaitlyn's first deliverable:</b> the draft Paluxy watershed HTML map, ~2 weeks out (Friday).</div></li>
+        <li><span class="n">›</span><div><b>Repo:</b> leaning toward making the HTMLs <i>public</i> (it's all public data, could help other watersheds) — after scrubbing personal names.</div></li>
+        <li><span class="n">›</span><div><b>Collaboration:</b> GitHub for versions; exploring a Claude Team plan for shared project work.</div></li>
+        <li><span class="n">›</span><div><b>Cadence:</b> meet again in ~2 weeks (maybe lunch); email in between.</div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- OPEN QUESTIONS -->
+  <section>
+    <div class="sec-label">To resolve</div>
+    <h2 class="title">Open questions</h2>
+    <div class="open">
+      <div class="oq"><span class="q">?</span><div><b>Volunteer application</b> — follow up with Tarleton/compliance to unlock the Teams site + guest access. <span style="color:var(--steph);font-weight:600">(S)</span></div></div>
+      <div class="oq"><span class="q">?</span><div><b>Make the repo public?</b> Leaning yes — after scrubbing individuals' names. <span style="color:var(--both);font-weight:600">(◆)</span></div></div>
+      <div class="oq"><span class="q">?</span><div><b>ArcGIS access</b> for the cross-section — Kaitlyn's job license vs. a TIAER volunteer license. <span style="color:var(--kait);font-weight:600">(K)</span></div></div>
+      <div class="oq"><span class="q">?</span><div><b>Funding</b> — how to land grants that create cash flow for TIAER on this work. <span style="color:var(--steph);font-weight:600">(S)</span></div></div>
+    </div>
+  </section>
+
+  <footer>
+    Data Centers &amp; Your Water · TIAER, Tarleton State University · Non-advocacy · Water quality first · Roadmap v3 (updated from the Aug 7 work session)
+  </footer>
+
+</div>
+
+<script>
+  const boxes = Array.from(document.querySelectorAll('ul.check li'));
+  const fill = document.getElementById('fill');
+  const pct = document.getElementById('pct');
+  function updateGlobal(){
+    const done = boxes.filter(b=>b.classList.contains('done')).length;
+    fill.style.width = boxes.length ? (done/boxes.length*100)+'%' : '0%';
+    pct.textContent = done+' / '+boxes.length;
+  }
+  function updateCounts(){
+    document.querySelectorAll('.ver').forEach(v=>{
+      const items=v.querySelectorAll('ul.check li');
+      const done=Array.from(items).filter(i=>i.classList.contains('done')).length;
+      const c=v.querySelector('[data-count]'); if(c) c.textContent=done+'/'+items.length;
+    });
+  }
+  boxes.forEach(li=>{li.addEventListener('click',()=>{li.classList.toggle('done');updateGlobal();updateCounts();});});
+  function resetAll(){boxes.forEach(b=>b.classList.remove('done'));updateGlobal();updateCounts();}
+  document.querySelectorAll('.filt').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.filt').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f=btn.dataset.f;
+      boxes.forEach(li=>{li.classList.toggle('dim', f!=='all' && li.dataset.owner!==f);});
+    });
+  });
+  updateGlobal();updateCounts();
+</script>
+</body>
+</html>
