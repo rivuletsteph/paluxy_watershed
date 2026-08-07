@@ -12,12 +12,12 @@ This is a **non-advocacy** resource: it provides objective information and usefu
 
 | File | What it is |
 |------|------------|
-| **`website-v1-draft.html`** | The **current working draft of the website** (the V1 build) — water-quality-first, non-advocacy. Includes a *Build notes* toggle (top-right) that shows/hides per-section notes on what's needed and who owns it. Placeholders mark content still to add. |
-| **`website-original-draft.html`** | The **original starting draft (v0.3)** that `website-v1-draft.html` was built from. Kept for reference/provenance. |
-| **`roadmap.html`** | **Product roadmap (v2.1)** — the plan version by version (V1 → V4), with checklists, a suggested division of labor, and open questions. Interactive. |
-| **`v1-build-plan.html`** | The detailed **build plan for V1** — page blueprint (section by section), content/data to gather, sequenced next steps, and a definition of done. Interactive. |
+| **`website.html`** | The **website**. Current content is the **V1 working draft** — water-quality-first, non-advocacy — with a *Build notes* toggle (top-right) that shows/hides per-section notes on what's needed and who owns it. The **original v0.3 draft is preserved in this file's git history** (open the file → History). |
+| **`roadmap.html`** | **Product roadmap (v3)** — the plan version by version (V1 → V4), with checklists and a suggested division of labor. Interactive. |
+| **`v1-build-plan.html`** | The detailed **build plan for V1** — page blueprint, content/data to gather, sequenced next steps, and a definition of done. Interactive. |
+| **`CHANGELOG.md`** | A plain-language history of the roadmap and website versions. |
 
-*Open any file by double-clicking it, or view them live via GitHub Pages (see below).*
+*Open any HTML file by downloading it and double-clicking (GitHub won't render HTML in the browser). Or view live via GitHub Pages (see below).*
 
 ---
 
@@ -25,16 +25,17 @@ This is a **non-advocacy** resource: it provides objective information and usefu
 
 - **Non-advocacy.** Information and tools, never opinions. "Here's what we know; here are steps you can take."
 - **Water quality first.** TIAER's focus and the site's throughline — anchored in long-term watershed health.
-- **Paluxy focus, built to scale.** Nail the Paluxy pilot first, with a structure that can grow into a broader water-literacy resource.
+- **Actionable & digestible.** Surface the data that matters, then a clear path to action — no wall of metrics.
+- **Paluxy focus, built to scale.** Nail the Paluxy pilot first, with a structure that can grow.
 
 ---
 
 ## Roadmap at a glance
 
-- **V1 · Foundation & Focus** — a credible single-page site that answers the first questions *(current work → `website-v1-draft.html`)*
-- **V2 · Understand the Science** — visual explainers, incl. the aquifer cross-section "side view"
-- **V3 · The Multi-Page Hub** — full data hub, interactive maps, stakeholder/government directory
-- **V4 · Community & Scale** — citizen science, contributor model, Texas-wide water-literacy hub
+- **V1 · Foundation & the Map** — a credible single-page site built around an interactive Paluxy map *(current work → `website.html`)*
+- **V2 · Understand the Science** — aquifer cross-section, recharge/flow, SWAT-inspired runoff
+- **V3 · Community & Action** — citizen science, resources, funding
+- **V4 · Multi-Page Hub & Other Watersheds** — expand once the Paluxy is really strong
 
 Full detail in `roadmap.html`.
 
@@ -42,9 +43,9 @@ Full detail in `roadmap.html`.
 
 ## Status
 
-**Draft — internal review.** Verify all contacts and data before public distribution. Working team: Stephanie & Kaitlyn. Hosting/branding review with Tarleton comes *after* a draft the team is happy with.
+**Draft — internal review.** Verify all contacts and data before wide distribution. Working team: Stephanie & Kaitlyn.
 
 ## Viewing the site
 
-- **Locally:** open `website-v1-draft.html` in any modern browser. The *Build notes* toggle switches between the annotated (who-owns-what) view and the clean public preview.
-- **GitHub Pages (optional):** to have Pages serve the site automatically, rename `website-v1-draft.html` to `index.html` (Pages looks for `index.html` at the repo root), then Settings → Pages → deploy from `main` → `/root`.
+- **Locally:** download `website.html` and open it in any modern browser. The *Build notes* toggle switches between the annotated (who-owns-what) view and the clean public preview.
+- **GitHub Pages (optional):** to have Pages serve the site automatically, rename `website.html` to `index.html`, then Settings → Pages → deploy from `main` → `/root`.
