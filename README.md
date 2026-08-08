@@ -17,8 +17,7 @@ TIAER was created by the Texas Legislature in 1991 to bring rigorous, applied sc
 | File | What it is |
 |------|------------|
 | **`website.html`** | The **website**. Current content is the **V1 working draft** — water-quality-first, objective — with a *Build notes* toggle (top-right) that shows/hides per-section notes on what's needed and who owns it. The **original v0.3 draft is preserved in this file's git history** (open the file → History). |
-| **`roadmap.html`** | **Product roadmap (v3)** — the plan version by version (V1 → V4), with checklists and a suggested division of labor. Interactive. |
-| **`v1-build-plan.html`** | The detailed **build plan for V1** — page blueprint, content/data to gather, sequenced next steps, and a definition of done. Interactive. |
+| **`roadmap.html`** | **Product roadmap (v3)** — the plan version by version (V1 → V4), with checklists, a suggested division of labor, and the detailed **V1 build blueprint** folded in. Interactive. |
 | **`CHANGELOG.md`** | A plain-language history of the roadmap and website versions. |
 
 *Open any HTML file by downloading it and double-clicking (GitHub won't render HTML in the browser). Or view live via GitHub Pages (see below).*
